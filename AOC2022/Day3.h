@@ -15,8 +15,7 @@ namespace day3
 		}
 
 		uint64_t itemIndex = std::countr_zero( sharedItems );
-
-		if( itemIndex > 32 )
+		if( itemIndex >= 32 )
 		{
 			return itemIndex - 31;
 		}
@@ -39,9 +38,13 @@ namespace day3
 			auto& leftCompartment = compartmentContents[ 0 ];
 			auto& rightCompartment = compartmentContents[ 1 ];
 			
-			for( uint64_t itemIndex = 0; itemIndex < compartments.size(); ++itemIndex )
+			for( uint64_t itemIndex = 0; itemIndex < midPoint; ++itemIndex )
 			{
-				encodeIntoCompartment( itemIndex < midPoint ? leftCompartment : rightCompartment, compartments[ itemIndex ] );
+				encodeIntoCompartment( leftCompartment, compartments[ itemIndex ] );
+			}
+			for( uint64_t itemIndex = midPoint; itemIndex < compartments.size(); ++itemIndex )
+			{
+				encodeIntoCompartment( rightCompartment, compartments[ itemIndex ] );
 			}
 
 			sum += priorityFromCompartments( compartmentContents );
