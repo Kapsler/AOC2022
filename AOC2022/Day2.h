@@ -29,12 +29,17 @@ namespace day2
 		1 + 6	//SCIZZOR_WIN(ROCK),
 	};
 
+	__forceinline int calculateComboIndex( const std::string& round )
+	{
+		return ( ( round[ 0 ] - 'A' ) * 3 ) + ( round[ 2 ] - 'X' );
+	}
+
 	uint64_t day2part1( const std::vector< std::string >& data )
 	{
 		uint64_t sum = 0;
 		for( const auto& round : data )
 		{
-			const auto& comboIndex = ( ( round[ 0 ] - 'A' ) * 3 ) + ( round[ 2 ] - 'X' );
+			const auto& comboIndex = calculateComboIndex( round );
 			sum += part1Outcomes[ comboIndex ];
 		}
 
@@ -46,7 +51,7 @@ namespace day2
 		uint64_t sum = 0;
 		for( const auto& round : data )
 		{
-			const auto& comboIndex = ( ( round[ 0 ] - 'A' ) * 3 ) + ( round[ 2 ] - 'X' );
+			const auto& comboIndex = calculateComboIndex( round );
 			sum += part2Outcomes[ comboIndex ];
 		}
 
