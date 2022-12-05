@@ -11,7 +11,7 @@ int main()
 	//std::vector< int32_t > inputDataInts;
 	//Utils::ConvertStringsToInts( inputDataStrings, inputDataInts );
 
-	uint64_t answer = day3part2( inputDataStrings );
+	uint64_t answer = day3part1( inputDataStrings );
 
 	printf( "%llu\n", answer );
 }

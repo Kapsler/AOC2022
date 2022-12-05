@@ -45,10 +45,9 @@ uint64_t day3part1( const std::vector< std::string >& data )
 		auto& leftCompartment = compartmentContents[ 0 ];
 		auto& rightCompartment = compartmentContents[ 1 ];
 
-		for( int32_t i = 0; i < compartments.size(); ++i )
+		for( int32_t itemIndex = 0; itemIndex < compartments.size(); ++itemIndex )
 		{
-			char currentCharacter = compartments.at( i );
-			encodeIntoCompartment( i < midPoint ? leftCompartment : rightCompartment, currentCharacter );
+			encodeIntoCompartment( itemIndex < midPoint ? leftCompartment : rightCompartment, compartments[ itemIndex ] );
 		}
 
 		sum += priorityFromCompartments( compartmentContents );
@@ -70,8 +69,7 @@ uint64_t day3part2( const std::vector< std::string >& data )
 			const auto& compartments = data[ groupIndex + elfIndex ];
 			for( int32_t itemIndex = 0; itemIndex < compartments.size(); ++itemIndex )
 			{
-				char currentCharacter = compartments.at( itemIndex );
-				encodeIntoCompartment( elfCompartments[ elfIndex ], currentCharacter );
+				encodeIntoCompartment( elfCompartments[ elfIndex ], compartments[ itemIndex ] );
 			}
 		}
 
