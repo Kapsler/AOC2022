@@ -25,11 +25,6 @@ namespace day4
 		}
 	}
 
-	uint64_t intCompare(uint64_t a, uint64_t b)
-	{
-		return ( a < b ) ? -1 : ( a > b );
-	}
-
 	uint64_t day4part1( const std::vector< uint64_t >& data )
 	{
 		uint64_t sum = 0;
