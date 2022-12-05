@@ -41,10 +41,7 @@ namespace day3
 			for( uint64_t itemIndex = 0; itemIndex < midPoint; ++itemIndex )
 			{
 				encodeIntoCompartment( leftCompartment, compartments[ itemIndex ] );
-			}
-			for( uint64_t itemIndex = midPoint; itemIndex < compartments.size(); ++itemIndex )
-			{
-				encodeIntoCompartment( rightCompartment, compartments[ itemIndex ] );
+				encodeIntoCompartment( rightCompartment, compartments[ itemIndex + midPoint ] );
 			}
 
 			sum += priorityFromCompartments( compartmentContents );

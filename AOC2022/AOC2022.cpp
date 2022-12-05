@@ -11,7 +11,7 @@ int __cdecl main()
 	//Utils::ConvertStringsToInts( inputDataStrings, inputDataInts );
 
 	auto begin = std::chrono::high_resolution_clock::now();
-	uint64_t answer = day3::day3part2( inputDataStrings );
+	uint64_t answer = day3::day3part1( inputDataStrings );
 	auto end = std::chrono::high_resolution_clock::now();
 
 	auto timing = end - begin;
