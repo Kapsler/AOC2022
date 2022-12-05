@@ -27,7 +27,7 @@ namespace Utils
 		}
 	}
 
-	static void ConvertStringsToInts( const std::vector<std::string>& inputs, std::vector< int32_t >& outputs, int32_t emptyStringInt = -1 )
+	static void ConvertStringsToInts( const std::vector< std::string >& inputs, std::vector< uint64_t >& outputs, uint64_t emptyStringInt = 0 )
 	{
 		outputs.reserve( inputs.size() );
 		for( const auto& line : inputs )

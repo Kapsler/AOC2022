@@ -3,15 +3,17 @@
 #include "Day2.h"
 #include "Day3.h"
 
-int main()
+int __cdecl main()
 {
-	
 	std::vector<std::string> inputDataStrings;
 	Utils::ReadFile( "/data/day3/input.txt", inputDataStrings );
-	//std::vector< int32_t > inputDataInts;
+	//std::vector< uint64_t > inputDataInts;
 	//Utils::ConvertStringsToInts( inputDataStrings, inputDataInts );
 
-	uint64_t answer = day3part1( inputDataStrings );
+	auto begin = std::chrono::high_resolution_clock::now();
+	uint64_t answer = day3::day3part2( inputDataStrings );
+	auto end = std::chrono::high_resolution_clock::now();
 
-	printf( "%llu\n", answer );
+	auto timing = end - begin;
+	printf( "Answer %llu, Timing:%llu us \n", answer, std::chrono::duration_cast< std::chrono::microseconds >( timing ).count() );
 }
