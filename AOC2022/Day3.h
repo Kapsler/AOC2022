@@ -6,7 +6,7 @@
 
 namespace day3
 {
-	__forceinline uint64_t priorityFromCompartments( std::span< uint64_t > compartments )
+	__forceinline uint64_t priorityFromSharedItems( std::span< uint64_t > compartments )
 	{
 		uint64_t sharedItems = compartments[ 0 ];
 		for( int i = 1; i < compartments.size(); ++i )
@@ -44,7 +44,7 @@ namespace day3
 				encodeIntoCompartment( rightCompartment, compartments[ itemIndex + midPoint ] );
 			}
 
-			sum += priorityFromCompartments( compartmentContents );
+			sum += priorityFromSharedItems( compartmentContents );
 		}
 
 		return sum;
@@ -67,7 +67,7 @@ namespace day3
 				}
 			}
 
-			sum += priorityFromCompartments( elfCompartments );
+			sum += priorityFromSharedItems( elfCompartments );
 		}
 
 		return sum;

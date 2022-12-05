@@ -6,12 +6,12 @@
 int __cdecl main()
 {
 	std::vector<std::string> inputDataStrings;
-	Utils::ReadFile( "/data/day3/input.txt", inputDataStrings );
+	Utils::ReadFile( "/data/day2/input.txt", inputDataStrings );
 	//std::vector< uint64_t > inputDataInts;
 	//Utils::ConvertStringsToInts( inputDataStrings, inputDataInts );
 
 	auto begin = std::chrono::high_resolution_clock::now();
-	uint64_t answer = day3::day3part1( inputDataStrings );
+	uint64_t answer = day2::day2part1( inputDataStrings );
 	auto end = std::chrono::high_resolution_clock::now();
 
 	auto timing = end - begin;
