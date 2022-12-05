@@ -35,5 +35,8 @@
     <ClInclude Include="Day2.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="Day3.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
