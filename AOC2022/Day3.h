@@ -1,32 +1,17 @@
 #pragma once
 
+#include <span>
 #include <string>
 #include <vector>
 
-__forceinline constexpr uint64_t priorityFromCompartments( const uint64_t& compartment1, const uint64_t& compartment2, const uint64_t compartment3 )
+__forceinline constexpr uint64_t priorityFromCompartments( std::span< uint64_t > compartments )
 {
-	uint64_t sharedItems = compartment1 & compartment2 & compartment3;
-	for( int i = 0; i < ( sizeof( uint64_t ) * 8 ); ++i )
+	uint64_t sharedItems = compartments[ 0 ];
+	for( int i = 1; i < compartments.size(); ++i )
 	{
-		if( ( sharedItems & ( 1llu << i ) ) != 0 )
-		{
-			if( ( sharedItems > ( 1ull << 32llu ) ) )
-			{
-				return i - 32 + 1;
-			}
-			else
-			{
-				return i + 27;
-			}
-		}
+		sharedItems &= compartments[ i ];
 	}
-
-	return 0;
-}
-
-__forceinline constexpr uint64_t priorityFromCompartments( const uint64_t& leftCompartment, const uint64_t& rightCompartment )
-{
-	uint64_t sharedItems = leftCompartment & rightCompartment;
+	
 	for( int i = 0; i < ( sizeof( uint64_t ) * 8 ); ++i )
 	{
 		if( ( sharedItems & ( 1llu << i ) ) != 0 )
@@ -56,8 +41,9 @@ uint64_t day3part1( const std::vector< std::string >& data )
 	for( std::string_view compartments : data )
 	{
 		const int32_t midPoint = compartments.size() / 2;
-		uint64_t leftCompartment = 0;
-		uint64_t rightCompartment = 0;
+		uint64_t compartmentContents[ 2 ] = { 0 };
+		auto& leftCompartment = compartmentContents[ 0 ];
+		auto& rightCompartment = compartmentContents[ 1 ];
 
 		for( int32_t i = 0; i < compartments.size(); ++i )
 		{
@@ -65,7 +51,7 @@ uint64_t day3part1( const std::vector< std::string >& data )
 			encodeIntoCompartment( i < midPoint ? leftCompartment : rightCompartment, currentCharacter );
 		}
 
-		sum += priorityFromCompartments( leftCompartment, rightCompartment );
+		sum += priorityFromCompartments( compartmentContents );
 	}
 
 	return sum;
@@ -89,7 +75,7 @@ uint64_t day3part2( const std::vector< std::string >& data )
 			}
 		}
 
-		sum += priorityFromCompartments( elfCompartments[ 0 ], elfCompartments[ 1 ], elfCompartments[ 2 ] );
+		sum += priorityFromCompartments( elfCompartments );
 	}
 
 	return sum;
